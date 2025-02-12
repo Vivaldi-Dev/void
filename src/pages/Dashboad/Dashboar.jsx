@@ -22,26 +22,39 @@ function Dashboard() {
 
     return (
         <div className=''>
-            <div className="mb-4 flex gap-4 px-14 mt-10">
+            <div className="mb-4 flex gap-4 px-20 mt-10">
                 <input type="text" placeholder="Buscar por setor" className="px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded" />
-                <input type="text" placeholder="Buscar por área" className="px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded" />
+
                 <select className="px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded">
-                    <option value="">Selecione o técnico</option>
+                    <option value="">Registro</option>
                     {data?.technicians?.map((tech) => (
-                        <option key={tech.technician_id} value={tech.technician_name}>{tech.technician_name}</option>
+                        <option key={tech.technician_id} value={tech.area_name}>{tech.area_name}</option>
                     ))}
                 </select>
+
                 <select className="px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded">
-                    <option value="">Selecione a semana</option>
-                    {[...Array(data?.weeksCount).keys()].map(i => (
-                        <option key={i} value={`Semana ${i + 1}`}>{`Semana ${i + 1}`}</option>
+                    <option value="">Selecione a Area</option>
+                    {data?.technicians?.map((tech) => (
+                        <option key={tech.technician_id} value={tech.area_name}>{tech.area_name}</option>
                     ))}
                 </select>
+
+
+
+
+                <select className="px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded">
+                    <option value="">Selecione a Sector</option>
+                    {data?.technicians?.map((tech) => (
+
+                        <option key={tech.technician_id} value={tech.sector}>{tech.sector}</option>
+                    ))}
+                </select>
+
+
             </div>
 
-            <div className="px-10 mt-10">
-                {/* Contêiner com overflow */}
-                <div className="overflow-x-auto">
+            <div className="mt-10 px-14">
+                <div className="overflow-x-auto p-4">
                     <table className="min-w-full text-white bg-gray-800 rounded-2xl">
                         <thead>
                             <tr>
@@ -49,7 +62,7 @@ function Dashboard() {
                                 <th className="px-4 py-2 border-b text-start">ÁREA</th>
                                 <th className="px-4 py-2 border-b text-start">TÉCNICO</th>
                                 {[...Array(data?.weeksCount).keys()].map(i => (
-                                    <th key={i} className="px-4 py-2 border-b text-center">{`SEMANA ${i + 1}`}</th>
+                                    <th key={i} className="px-20 py-2 border-b text-center">{`SEMANA ${i + 1}`}</th>
                                 ))}
                             </tr>
                         </thead>
@@ -58,7 +71,7 @@ function Dashboard() {
                                 <tr key={tech.technician_id}>
                                     <td className="px-4 py-2 border-b">{tech.sector}</td>
                                     <td className="px-4 py-2 border-b">{tech.area_name}</td>
-                                    <td className="px-4 py-2 border-b">{tech.technician_name}</td>
+                                    <td className="px-4 py-2 border-b whitespace-nowrap">{tech.technician_name}</td>
                                     {tech.weeks.map((week, index) => (
                                         <td key={index} className="px-4 py-2 border-b text-center">
                                             <div className="flex gap-10 justify-center">
@@ -76,15 +89,17 @@ function Dashboard() {
             </div>
 
 
-            <div class="overflow-x-auto px-10 mt-10">
+
+            {/* <div class="overflow-x-auto px-10 mt-10">
                 <table class="min-w-full text-white bg-gray-900">
                     <thead class="bg-gray-800">
                         <tr>
-                            <th class="px-4 py-2 border-b border-gray-700">SECTOR</th>
-                            <th class="px-4 py-2 border-b border-gray-700">ÁREA</th>
-                            <th class="px-4 py-2 border-b border-gray-700">TÉCNICO</th>
-                            <th class="px-4 py-2 border-b border-gray-700">Produtores</th>
-                           
+                            <th className="px-8 py-2 border-b text-start">SECTOR</th>
+                            <th className="px-4 py-2 border-b text-start">ÁREA</th>
+                            <th className="px-4 py-2 border-b text-start">TÉCNICO</th>
+                            {[...Array(data?.weeksCount).keys()].map(i => (
+                                <th key={i} className="px-16 py-2 border-b text-center">{`SEMANA ${i + 1}`}</th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
@@ -112,7 +127,7 @@ function Dashboard() {
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> */}
 
 
 
