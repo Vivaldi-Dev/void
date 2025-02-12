@@ -3,17 +3,19 @@ import { useLogin } from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
-
     const navigate = useNavigate();
-    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { loading, error, data, handleLogin } = useLogin();
-
+    
     const onSubmit = async (e) => {
         e.preventDefault();
         await handleLogin(email, password);
-        navigate('/dashboard');
+
+
+        if (data) {
+            navigate('/dashboard');
+        }
     };
 
     return (
@@ -69,13 +71,13 @@ function LoginPage() {
 
                     {error && (
                         <div className="text-red-500 text-sm">
-                            {error.message || 'An error occurred during login.'}
+                            {error}
                         </div>
                     )}
 
                     {data && (
                         <div className="text-green-500 text-sm">
-                            Login successful! Welcome, {data.data.user.fullname}.
+                            Login successful! Welcome, {data.user.fullname}.
                         </div>
                     )}
                 </form>

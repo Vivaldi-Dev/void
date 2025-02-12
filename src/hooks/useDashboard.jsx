@@ -12,7 +12,7 @@ export const useDashboard = (token) => {
             // console.log("Iniciando a requisição para os dados com token:", token); 
             try {
                 const fetchedData = await fetchDashboardData(token);
-                console.log("Dados recebidos no hook:", fetchedData); 
+                // console.log("Dados recebidos no hook:", fetchedData); 
                 setData(fetchedData);
             } catch (error) {
                 console.error("Erro ao carregar os dados:", error);  
